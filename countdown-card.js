@@ -350,7 +350,14 @@ class CountdownCard extends HTMLElement {
 
   disconnectedCallback() {
     if (this._interval) clearInterval(this._interval);
+    this._interval = null;
     this._stopConfetti();
+  }
+
+  connectedCallback() {
+    if (this._config && !this._interval) {
+      this._startCountdown();
+    }
   }
 
   getCardSize() { return 4; }
