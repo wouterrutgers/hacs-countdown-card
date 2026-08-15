@@ -195,7 +195,7 @@ class CountdownCard extends HTMLElement {
     
     const update = () => {
       const target = new Date(this._config.datetime);
-      const now = Date.now();
+      const now = new Date();
       let diff = target - now;
       
       const container = this.shadowRoot?.querySelector('.countdown-container');
@@ -232,17 +232,28 @@ class CountdownCard extends HTMLElement {
         return;
       }
       
-      const MS_MONTH = 1000 * 60 * 60 * 24 * 30.44;
+      // Berekening van kalendermaanden
+      let months = (target.getFullYear() - now.getFullYear()) * 12 + (target.getMonth() - now.getMonth());
+      let refDate = new Date(now);
+      refDate.setMonth(refDate.getMonth() + months);
+      
+      if (refDate > target) {
+        months--;
+        refDate = new Date(now);
+        refDate.setMonth(refDate.getMonth() + months);
+      }
+      
+      let remaining = target - refDate;
+      
       const MS_DAY = 1000 * 60 * 60 * 24;
       const MS_HOUR = 1000 * 60 * 60;
       const MS_MIN = 1000 * 60;
       
-      const months = Math.floor(diff / MS_MONTH); diff %= MS_MONTH;
-      const days = Math.floor(diff / MS_DAY); diff %= MS_DAY;
-      const hours = Math.floor(diff / MS_HOUR); diff %= MS_HOUR;
-      const minutes = Math.floor(diff / MS_MIN); diff %= MS_MIN;
-      const seconds = Math.floor(diff / 1000);
-      const ms = Math.floor((diff % 1000) / 10);
+      const days = Math.floor(remaining / MS_DAY); remaining %= MS_DAY;
+      const hours = Math.floor(remaining / MS_HOUR); remaining %= MS_HOUR;
+      const minutes = Math.floor(remaining / MS_MIN); remaining %= MS_MIN;
+      const seconds = Math.floor(remaining / 1000);
+      const ms = Math.floor((remaining % 1000) / 10);
       
       let html = '';
       if (months > 0) html += this._unit(months, 'month', months !== 1);
@@ -362,7 +373,7 @@ class CountdownCard extends HTMLElement {
 
   getCardSize() { return 4; }
   static getConfigElement() { return document.createElement('countdown-card-editor'); }
-  static getStubConfig() { return { name: 'New Year 2026', datetime: '2026-01-01T00:00:00' }; }
+  static getStubConfig() { return { name: 'New Year 2027', datetime: '2027-01-01T00:00:00' }; }
 }
 
 class CountdownCardEditor extends HTMLElement {
