@@ -1,7 +1,7 @@
 const TRANSLATIONS = {
   en: {
     its_almost: "It's almost",
-    it_was: "It was",
+    it_was: "It is",
     months: "months", month: "month",
     days: "days", day: "day",
     hours: "hours", hour: "hour",
@@ -9,7 +9,7 @@ const TRANSLATIONS = {
   },
   nl: {
     its_almost: "Het is bijna",
-    it_was: "Het was",
+    it_was: "Het is",
     months: "maanden", month: "maand",
     days: "dagen", day: "dag",
     hours: "uren", hour: "uur",
