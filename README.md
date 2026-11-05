@@ -2,7 +2,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-A beautiful countdown card for Home Assistant, inspired by [itsalmo.st](https://itsalmo.st). Shows a live countdown with months, days, hours, minutes, seconds, and milliseconds - with celebratory confetti when the event arrives!
+A beautiful countdown card for Home Assistant, inspired by itsalmo.st (no longer available). Shows a live countdown with months, days, hours, minutes, seconds, and milliseconds, with celebratory confetti when the event arrives!
 
 
 ## Features
@@ -68,5 +68,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Credits
 
-- Inspired by [itsalmo.st](https://itsalmo.st)
+- Inspired by itsalmo.st (no longer available)
 - Built for [Home Assistant](https://www.home-assistant.io/)
